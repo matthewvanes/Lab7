@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		34B0130724198A5B005C40C0 /* CustomizeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34B0130624198A5B005C40C0 /* CustomizeViewController.swift */; };
 		F46B6F332412D11800F9976B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F46B6F322412D11800F9976B /* AppDelegate.swift */; };
 		F46B6F352412D11800F9976B /* DocumentBrowserViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F46B6F342412D11800F9976B /* DocumentBrowserViewController.swift */; };
 		F46B6F372412D11800F9976B /* DocumentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F46B6F362412D11800F9976B /* DocumentViewController.swift */; };
@@ -37,6 +38,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		34B0130624198A5B005C40C0 /* CustomizeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomizeViewController.swift; sourceTree = "<group>"; };
 		F46B6F2F2412D11800F9976B /* Lab7.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Lab7.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F46B6F322412D11800F9976B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F46B6F342412D11800F9976B /* DocumentBrowserViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DocumentBrowserViewController.swift; sourceTree = "<group>"; };
@@ -107,6 +109,7 @@
 				F46B6F342412D11800F9976B /* DocumentBrowserViewController.swift */,
 				F46B6F362412D11800F9976B /* DocumentViewController.swift */,
 				F46B6F382412D11800F9976B /* Document.swift */,
+				34B0130624198A5B005C40C0 /* CustomizeViewController.swift */,
 				F46B6F3A2412D11800F9976B /* Main.storyboard */,
 				F46B6F642412D2E400F9976B /* New Document.rtf */,
 				F46B6F3D2412D11900F9976B /* Assets.xcassets */,
@@ -269,6 +272,7 @@
 				F46B6F392412D11800F9976B /* Document.swift in Sources */,
 				F46B6F372412D11800F9976B /* DocumentViewController.swift in Sources */,
 				F46B6F352412D11800F9976B /* DocumentBrowserViewController.swift in Sources */,
+				34B0130724198A5B005C40C0 /* CustomizeViewController.swift in Sources */,
 				F46B6F332412D11800F9976B /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

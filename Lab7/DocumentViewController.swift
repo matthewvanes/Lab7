@@ -10,8 +10,13 @@ import UIKit
 
 class DocumentViewController: UIViewController {
     
+    //MARK: - Properties
     @IBOutlet weak var documentNameLabel: UILabel!
     @IBOutlet weak var textView: UITextView!
+    @IBOutlet weak var style1Button: UIButton!
+    @IBOutlet weak var style2Button: UIButton!
+    @IBOutlet weak var style3Button: UIButton!
+    @IBOutlet weak var style4Button: UIButton!
     
     var document: Document?
     
@@ -30,6 +35,18 @@ class DocumentViewController: UIViewController {
         })
     }
     
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        super.prepare(for: segue, sender: sender)
+        if segue.identifier != "ShowController" {
+            return
+        }
+        guard let customizeViewController = segue.destination.children[0] as? CustomizeViewController else {
+            fatalError("Unexpected destination \(segue.destination)")
+        }
+        customizeViewController.pickerData = ["Style 1", "Style 2", "Style 3", "Styled 4"]
+    }
+    
+    //MARK: - Button Actions
     @IBAction func dismissDocumentViewController() {
         if document?.text != textView.attributedText {
             document?.text = textView.attributedText
@@ -38,5 +55,23 @@ class DocumentViewController: UIViewController {
         dismiss(animated: true) {
             self.document?.close(completionHandler: nil)
         }
+    }
+    
+    @IBAction func unwindToDocumentViewController(sender: UIStoryboardSegue) {
+        if let sourceViewController = sender.source as? CustomizeViewController {
+            print(sourceViewController.pickerData)
+        }
+    }
+    
+    @IBAction func style1ButtonPressed(_ sender: UIButton) {
+    }
+    
+    @IBAction func style2ButtonPressed(_ sender: UIButton) {
+    }
+    
+    @IBAction func style3ButtonPressed(_ sender: UIButton) {
+    }
+    
+    @IBAction func style4ButtonPressed(_ sender: UIButton) {
     }
 }
