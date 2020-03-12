@@ -17,8 +17,11 @@ class CustomizeViewController: UIViewController, UIPickerViewDelegate, UIPickerV
     @IBOutlet weak var italicsButton: UIButton!
     @IBOutlet weak var underlineButton: UIButton!
     
+    var documentViewController: DocumentViewController? = nil
     var pickerData = [String]()
     var rowSelected: Int = 0
+    var button1 = ""
+    var button2 = ""
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -27,7 +30,8 @@ class CustomizeViewController: UIViewController, UIPickerViewDelegate, UIPickerV
         self.picker.delegate = self
         self.picker.dataSource = self
         // Load data:
-        pickerData = ["Style 1", "Style 2", "Style 3", "Style 4"]
+        //pickerData = [documentViewController?.style1Button.setTitle("label", for: .normal)]
+        documentViewController?.style1Button.setTitle("label", for: .normal)
     }
     
     //MARK: - Delegate Functions
@@ -36,6 +40,7 @@ class CustomizeViewController: UIViewController, UIPickerViewDelegate, UIPickerV
         // send reload message to picker to update new text
         pickerData[rowSelected] = buttonLabel.text ?? "Style \(rowSelected)"
         picker.reloadAllComponents()
+        documentViewController?.style1Button.setTitle("label", for: .normal)
         print("reloaded")
     }
     
@@ -47,7 +52,7 @@ class CustomizeViewController: UIViewController, UIPickerViewDelegate, UIPickerV
     
     // Returns number of rows of data
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-        print("picker view 1")
+        //print("picker view 1")
         return pickerData.count;
     }
     
@@ -60,7 +65,7 @@ class CustomizeViewController: UIViewController, UIPickerViewDelegate, UIPickerV
     
     //
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-        print("picker view 3")
+        //print("picker view 3")
         return pickerData[row]
     }
 }

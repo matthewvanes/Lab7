@@ -43,7 +43,11 @@ class DocumentViewController: UIViewController {
         guard let customizeViewController = segue.destination.children[0] as? CustomizeViewController else {
             fatalError("Unexpected destination \(segue.destination)")
         }
-        customizeViewController.pickerData = ["Style 1", "Style 2", "Style 3", "Styled 4"]
+        // These could obviously be done in a loop. Look into later
+        customizeViewController.pickerData.append(style1Button?.titleLabel?.text ?? "Style 1")
+        customizeViewController.pickerData.append(style2Button?.titleLabel?.text ?? "Style 2")
+        customizeViewController.pickerData.append(style3Button?.titleLabel?.text ?? "Style 3")
+        customizeViewController.pickerData.append(style4Button?.titleLabel?.text ?? "Style 4")
     }
     
     //MARK: - Button Actions
@@ -59,6 +63,11 @@ class DocumentViewController: UIViewController {
     
     @IBAction func unwindToDocumentViewController(sender: UIStoryboardSegue) {
         if let sourceViewController = sender.source as? CustomizeViewController {
+            // These could obviously be done in a for loop. Look into fixing later.
+            style1Button.setTitle(sourceViewController.pickerData[0], for: .normal)
+            style2Button.setTitle(sourceViewController.pickerData[1], for: .normal)
+            style3Button.setTitle(sourceViewController.pickerData[2], for: .normal)
+            style4Button.setTitle(sourceViewController.pickerData[3], for: .normal)
             print(sourceViewController.pickerData)
         }
     }
