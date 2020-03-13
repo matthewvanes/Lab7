@@ -18,30 +18,57 @@ class CustomizeViewController: UIViewController, UIPickerViewDelegate, UIPickerV
     @IBOutlet weak var underlineButton: UIButton!
     
     var documentViewController: DocumentViewController? = nil
-    var pickerData = [String]()
+    var pickerData = [StyleEntry]()
     var rowSelected: Int = 0
-    var button1 = ""
-    var button2 = ""
+    var boldSelected: Bool = false
+    var italicsSelected: Bool = false
+    var underlineSelected: Bool = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
         // Additional setup after loading the view.
-        // Connect data:
+        // Connect data and picker:
         self.picker.delegate = self
         self.picker.dataSource = self
-        // Load data:
-        //pickerData = [documentViewController?.style1Button.setTitle("label", for: .normal)]
-        documentViewController?.style1Button.setTitle("label", for: .normal)
+        // Set buttons
+        checkButtonColors(rowSelected: rowSelected)
     }
     
     //MARK: - Delegate Functions
     @IBAction func buttonLabelChanged(_ sender: UITextField) {
-        // change picker entry to text
-        // send reload message to picker to update new text
-        pickerData[rowSelected] = buttonLabel.text ?? "Style \(rowSelected)"
+        pickerData[rowSelected].styleName = buttonLabel.text ?? "Style \(rowSelected)"
         picker.reloadAllComponents()
         documentViewController?.style1Button.setTitle("label", for: .normal)
-        print("reloaded")
+    }
+    
+    @IBAction func boldButtonPressed(_ sender: UIButton) {
+        if pickerData[rowSelected].isBold {
+            sender.setTitleColor(UIColor.systemBlue, for: .normal)
+            pickerData[rowSelected].isBold = false
+        } else {
+            sender.setTitleColor(UIColor.systemRed, for: .normal)
+            pickerData[rowSelected].isBold = true
+        }
+    }
+    
+    @IBAction func italicsButtonPressed(_ sender: UIButton) {
+        if pickerData[rowSelected].isItalic {
+            sender.setTitleColor(UIColor.systemBlue, for: .normal)
+            pickerData[rowSelected].isItalic = false
+        } else {
+            sender.setTitleColor(UIColor.systemRed, for: .normal)
+            pickerData[rowSelected].isItalic = true
+        }
+    }
+    
+    @IBAction func underlineButtonPressed(_ sender: UIButton) {
+        if pickerData[rowSelected].isUnderline {
+            sender.setTitleColor(UIColor.systemBlue, for: .normal)
+            pickerData[rowSelected].isUnderline = false
+        } else {
+            sender.setTitleColor(UIColor.systemRed, for: .normal)
+            pickerData[rowSelected].isUnderline = true
+        }
     }
     
     //MARK: - Data Source Functions
@@ -59,13 +86,42 @@ class CustomizeViewController: UIViewController, UIPickerViewDelegate, UIPickerV
     //MARK: - PickerView Functions
     // Used when a row in picker is selected. Sets rowSelected variable.
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+        // sets row selected
+        // sets button colours
+        // clears text field
         rowSelected = row
+        buttonLabel.text = ""
+        checkButtonColors(rowSelected: rowSelected)
         print("row selected: \(rowSelected)")
     }
     
     //
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
         //print("picker view 3")
-        return pickerData[row]
+        return pickerData[row].styleName
     }
+    
+    //MARK: - Custom Functions
+    func checkButtonColors(rowSelected: Int) {
+        if pickerData[rowSelected].isBold {
+            boldButton.setTitleColor(UIColor.systemRed, for: .normal)
+        }
+        else {
+            boldButton.setTitleColor(UIColor.systemBlue, for: .normal)
+        }
+        
+        if pickerData[rowSelected].isItalic {
+            italicsButton.setTitleColor(UIColor.systemRed, for: .normal)
+        }
+        else {
+            italicsButton.setTitleColor(UIColor.systemBlue, for: .normal)
+        }
+        if pickerData[rowSelected].isUnderline {
+            underlineButton.setTitleColor(UIColor.systemRed, for: .normal)
+        }
+        else {
+            underlineButton.setTitleColor(UIColor.systemBlue, for: .normal)
+        }
+    }
+    
 }

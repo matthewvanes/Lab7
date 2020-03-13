@@ -18,6 +18,7 @@
 		F46B6F4C2412D11900F9976B /* Lab7Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F46B6F4B2412D11900F9976B /* Lab7Tests.swift */; };
 		F46B6F572412D11900F9976B /* Lab7UITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F46B6F562412D11900F9976B /* Lab7UITests.swift */; };
 		F46B6F652412D2E400F9976B /* New Document.rtf in Resources */ = {isa = PBXBuildFile; fileRef = F46B6F642412D2E400F9976B /* New Document.rtf */; };
+		F4B4DDFD241ACA610013A321 /* StyleEntry.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4B4DDFC241ACA610013A321 /* StyleEntry.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -55,6 +56,7 @@
 		F46B6F562412D11900F9976B /* Lab7UITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Lab7UITests.swift; sourceTree = "<group>"; };
 		F46B6F582412D11900F9976B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		F46B6F642412D2E400F9976B /* New Document.rtf */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; path = "New Document.rtf"; sourceTree = "<group>"; };
+		F4B4DDFC241ACA610013A321 /* StyleEntry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StyleEntry.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -110,6 +112,7 @@
 				F46B6F362412D11800F9976B /* DocumentViewController.swift */,
 				F46B6F382412D11800F9976B /* Document.swift */,
 				34B0130624198A5B005C40C0 /* CustomizeViewController.swift */,
+				F4B4DDFC241ACA610013A321 /* StyleEntry.swift */,
 				F46B6F3A2412D11800F9976B /* Main.storyboard */,
 				F46B6F642412D2E400F9976B /* New Document.rtf */,
 				F46B6F3D2412D11900F9976B /* Assets.xcassets */,
@@ -271,6 +274,7 @@
 			files = (
 				F46B6F392412D11800F9976B /* Document.swift in Sources */,
 				F46B6F372412D11800F9976B /* DocumentViewController.swift in Sources */,
+				F4B4DDFD241ACA610013A321 /* StyleEntry.swift in Sources */,
 				F46B6F352412D11800F9976B /* DocumentBrowserViewController.swift in Sources */,
 				34B0130724198A5B005C40C0 /* CustomizeViewController.swift in Sources */,
 				F46B6F332412D11800F9976B /* AppDelegate.swift in Sources */,
