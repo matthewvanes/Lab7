@@ -20,18 +20,19 @@ class DocumentViewController: UIViewController {
     
     var document: Document?
     var styleData = [StyleEntry]()
+    let fontSize: CGFloat = 18
     
-    let boldStyle: NSAttributedString.Key = NSAttributedString.Key("boldStyle")
-    let italicStyle: NSAttributedString.Key = NSAttributedString.Key("italicStyle")
-    let underlineStyle: NSAttributedString.Key = NSAttributedString.Key("underlineStyle")
-    let boldFont: UIFont = .systemFont(ofSize: 14, weight: .bold)
-    let italicFont: UIFont = .italicSystemFont(ofSize: 14)
-    let underlineFont: UIFont = .systemFont(ofSize: 14, weight: .bold)
-    
-    var testDictionary = [ NSAttributedString.Key("boldStyle") : UIFont.systemFont(ofSize: 14, weight: .bold),
-                           NSAttributedString.Key("italicStyle") : UIFont.italicSystemFont(ofSize: 20),
-                           NSAttributedString.Key("underlineStyle") : UIFont.systemFont(ofSize: 14, weight: .bold)
-                        ]
+//    let boldStyle: NSAttributedString.Key = NSAttributedString.Key("boldStyle")
+//    let italicStyle: NSAttributedString.Key = NSAttributedString.Key("italicStyle")
+//    let underlineStyle: NSAttributedString.Key = NSAttributedString.Key("underlineStyle")
+//    let boldFont: UIFont = .systemFont(ofSize: 14, weight: .bold)
+//    let italicFont: UIFont = .italicSystemFont(ofSize: 14)
+//    let underlineFont: UIFont = .systemFont(ofSize: 14, weight: .bold)
+//
+//    var testDictionary = [ NSAttributedString.Key("boldStyle") : UIFont.systemFont(ofSize: 14, weight: .bold),
+//                           NSAttributedString.Key("italicStyle") : UIFont.italicSystemFont(ofSize: 20),
+//                           NSAttributedString.Key("underlineStyle") : UIFont.systemFont(ofSize: 14, weight: .bold)
+//                        ]
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -76,49 +77,48 @@ class DocumentViewController: UIViewController {
     
     @IBAction func unwindToDocumentViewController(sender: UIStoryboardSegue) {
         if let sourceViewController = sender.source as? CustomizeViewController {
-            // These could obviously be done in a for loop. Look into fixing later.
+            // Should be turned into for loop. Look into later.
             style1Button.setTitle(sourceViewController.pickerData[0].styleName, for: .normal)
             style2Button.setTitle(sourceViewController.pickerData[1].styleName, for: .normal)
             style3Button.setTitle(sourceViewController.pickerData[2].styleName, for: .normal)
             style4Button.setTitle(sourceViewController.pickerData[3].styleName, for: .normal)
-            print(sourceViewController.pickerData)
         }
     }
     
     @IBAction func style1ButtonPressed(_ sender: UIButton) {
-        let range = textView.selectedRange
-        let attributedString: NSMutableAttributedString = NSMutableAttributedString(string: textView.text)
-        attributedString.addAttribute(NSAttributedString.Key.underlineStyle, value: NSUnderlineStyle.single.rawValue, range: range)
-        // set size to default?
-        textView.attributedText = attributedString
+        let buttonIndex: Int = 0
+        applyStyles(styleIndex: buttonIndex)
     }
     
     @IBAction func style2ButtonPressed(_ sender: UIButton) {
-        let range = textView.selectedRange
-        let attributedString: NSMutableAttributedString = NSMutableAttributedString(string: textView.text)
-        attributedString.addAttributes([boldStyle:boldFont], range: range)
-        textView.attributedText = attributedString
+        let buttonIndex: Int = 1
+        applyStyles(styleIndex: buttonIndex)
     }
     
     @IBAction func style3ButtonPressed(_ sender: UIButton) {
-        let attributedText: NSMutableAttributedString = NSMutableAttributedString(string: textView.text, attributes: [NSAttributedString.Key.font : UIFont.boldSystemFont(ofSize: 14)])
-        textView.attributedText = attributedText
+        let buttonIndex: Int = 2
+        applyStyles(styleIndex: buttonIndex)
     }
     
     @IBAction func style4ButtonPressed(_ sender: UIButton) {
-        // BOLD
-        let boldAttributedText: NSMutableAttributedString =
-            NSMutableAttributedString(string: textView.text, attributes: [NSAttributedString.Key.font : UIFont.boldSystemFont(ofSize: 14)])
-        // ITALIC
-        let italicAttributedText: NSMutableAttributedString =
-            NSMutableAttributedString(string: textView.text, attributes: [NSAttributedString.Key.font : UIFont.boldSystemFont(ofSize: 14)])
-        // UNDERLINE
+        let buttonIndex: Int = 3
+        applyStyles(styleIndex: buttonIndex)
     }
     
     func applyStyles(styleIndex: Int) {
-        for i in 0...2 {
-            
+        let range = textView.selectedRange
+        let attributedString: NSMutableAttributedString = NSMutableAttributedString(string: textView.text)
+        let selectedStyle: StyleEntry = styleData[styleIndex]
+        if selectedStyle.isBold {
+            attributedString.addAttributes([NSAttributedString.Key.font : UIFont.boldSystemFont(ofSize: fontSize)], range: range)
         }
+        if selectedStyle.isItalic {
+            attributedString.addAttributes([NSAttributedString.Key.font : UIFont.italicSystemFont(ofSize: fontSize)], range: range)
+        }
+        if selectedStyle.isUnderline {
+            attributedString.addAttribute(NSAttributedString.Key.underlineStyle, value: NSUnderlineStyle.single.rawValue, range: range)
+        }
+        textView.attributedText = attributedString
     }
     
 }
