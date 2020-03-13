@@ -41,6 +41,19 @@ class CustomizeViewController: UIViewController, UIPickerViewDelegate, UIPickerV
         documentViewController?.style1Button.setTitle("label", for: .normal)
     }
     
+    // PURPOSE:
+    // Calls applyStyles function with provided "buttonIndex"
+    //
+    // PARAMETERS:
+    // UIButton: self
+    //
+    // RETURN/SIDE EFFECTS:
+    // Calls applyStyles function with provided "buttonIndex"
+    //
+    // NOTES:
+    // Each of these functions are the functionally identical.
+    // Difference is only the index provided when each button is pressed.
+    //
     @IBAction func boldButtonPressed(_ sender: UIButton) {
         if pickerData[rowSelected].isBold {
             sender.setTitleColor(UIColor.systemBlue, for: .normal)
@@ -72,35 +85,89 @@ class CustomizeViewController: UIViewController, UIPickerViewDelegate, UIPickerV
     }
     
     //MARK: - Data Source Functions
-    // Returns number of columns of data
+    // PURPOSE:
+    // Returns number of columns of data in picker.
+    //
+    // PARAMETERS:
+    //
+    //
+    // RETURN/SIDE EFFECTS:
+    // Returns integer of number of columns in picker.
+    //
+    // NOTES:
+    // In this particular implementation will only ever return 1.
+    //
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
         return 1
     }
     
-    // Returns number of rows of data
+    // PURPOSE:
+    // Returns the number of total rows of data in picker.
+    //
+    // PARAMETERS:
+    // UIPickerview pickerview, numOfRowsInComponent component
+    //
+    // RETURN/SIDE EFFECTS:
+    // Returns length/number of rows in picker data.
+    //
+    // NOTES:
+    // N/A
+    //
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
         //print("picker view 1")
         return pickerData.count;
     }
     
     //MARK: - PickerView Functions
-    // Used when a row in picker is selected. Sets rowSelected variable.
+    // PURPOSE:
+    // Called when a row in picker is selected
+    // Sets the rowSelected variable to index of selected row data.
+    // Calls the checkbuttonColors method on that row.
+    //
+    // PARAMETERS:
+    // N/A
+    //
+    // RETURN/SIDE EFFECTS:
+    //
+    //
+    // NOTES:
+    // N/A
+    //
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-        // sets row selected
-        // sets button colours
-        // clears text field
         rowSelected = row
         buttonLabel.text = ""
         checkButtonColors(rowSelected: rowSelected)
-        print("row selected: \(rowSelected)")
     }
     
+    // PURPOSE:
+    // Called when the picker is reloaded or created.
+    //
+    // PARAMETERS:
+    // N/A
+    //
+    // RETURN/SIDE EFFECTS:
+    // Returns the name of the style at the selected picker row.
+    //
+    // NOTES:
+    //
     //
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-        //print("picker view 3")
         return pickerData[row].styleName
     }
     
+    // PURPOSE:
+    // Checks and sets the button colours of selected row.
+    //
+    // PARAMETERS:
+    // Integer index of the row currently selected.
+    //
+    // RETURN/SIDE EFFECTS:
+    // If style attriutes are selected, the buttons are set to red, otherwise
+    // they will be set to blue.
+    //
+    // NOTES:
+    // N/A
+    //
     //MARK: - Custom Functions
     func checkButtonColors(rowSelected: Int) {
         if pickerData[rowSelected].isBold {

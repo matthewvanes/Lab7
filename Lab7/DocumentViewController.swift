@@ -22,18 +22,6 @@ class DocumentViewController: UIViewController {
     var styleData = [StyleEntry]()
     let fontSize: CGFloat = 18
     
-//    let boldStyle: NSAttributedString.Key = NSAttributedString.Key("boldStyle")
-//    let italicStyle: NSAttributedString.Key = NSAttributedString.Key("italicStyle")
-//    let underlineStyle: NSAttributedString.Key = NSAttributedString.Key("underlineStyle")
-//    let boldFont: UIFont = .systemFont(ofSize: 14, weight: .bold)
-//    let italicFont: UIFont = .italicSystemFont(ofSize: 14)
-//    let underlineFont: UIFont = .systemFont(ofSize: 14, weight: .bold)
-//
-//    var testDictionary = [ NSAttributedString.Key("boldStyle") : UIFont.systemFont(ofSize: 14, weight: .bold),
-//                           NSAttributedString.Key("italicStyle") : UIFont.italicSystemFont(ofSize: 20),
-//                           NSAttributedString.Key("underlineStyle") : UIFont.systemFont(ofSize: 14, weight: .bold)
-//                        ]
-    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         // Access the document
@@ -75,6 +63,18 @@ class DocumentViewController: UIViewController {
         }
     }
     
+    // PURPOSE:
+    // Called when the "Done" button is selected in CustomizeViewController
+    //
+    // PARAMETERS:
+    // UIStoryboardSegue: ShowController
+    //
+    // RETURN/SIDE EFFECTS:
+    // Sets the title of the style buttons to their entry in pickerData
+    //
+    // NOTES:
+    // N/A
+    //
     @IBAction func unwindToDocumentViewController(sender: UIStoryboardSegue) {
         if let sourceViewController = sender.source as? CustomizeViewController {
             // Should be turned into for loop. Look into later.
@@ -85,6 +85,19 @@ class DocumentViewController: UIViewController {
         }
     }
     
+    // PURPOSE:
+    // Calls applyStyles function with provided "buttonIndex"
+    //
+    // PARAMETERS:
+    // UIButton: self
+    //
+    // RETURN/SIDE EFFECTS:
+    // Calls applyStyles function with provided "buttonIndex"
+    //
+    // NOTES:
+    // Each of these functions are the functionally identical.
+    // Difference is only the index provided when each button is pressed.
+    //
     @IBAction func style1ButtonPressed(_ sender: UIButton) {
         let buttonIndex: Int = 0
         applyStyles(styleIndex: buttonIndex)
@@ -105,6 +118,21 @@ class DocumentViewController: UIViewController {
         applyStyles(styleIndex: buttonIndex)
     }
     
+    // PURPOSE:
+    // Applies style(s) of selected StyleEntry to selected text.
+    //
+    // PARAMETERS:
+    // N/A
+    //
+    // RETURN/SIDE EFFECTS:
+    // Sets selected text to the styles of selected StyleEntry.
+    //
+    // NOTES:
+    //
+    //
+    // MARK: - FIX ME
+    // Currently bold and italic cannot be selected together. Fonts override each other.
+    //
     func applyStyles(styleIndex: Int) {
         let range = textView.selectedRange
         let attributedString: NSMutableAttributedString = NSMutableAttributedString(string: textView.text)
