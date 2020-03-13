@@ -101,12 +101,18 @@ class DocumentViewController: UIViewController {
     }
     
     @IBAction func style3ButtonPressed(_ sender: UIButton) {
-        let attributedText = NSMutableAttributedString(string: “Hello, I am”, attributes: [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 17)])
+        let attributedText: NSMutableAttributedString = NSMutableAttributedString(string: textView.text, attributes: [NSAttributedString.Key.font : UIFont.boldSystemFont(ofSize: 14)])
+        textView.attributedText = attributedText
     }
     
     @IBAction func style4ButtonPressed(_ sender: UIButton) {
-        //let button4Index:Int = 3
-        
+        // BOLD
+        let boldAttributedText: NSMutableAttributedString =
+            NSMutableAttributedString(string: textView.text, attributes: [NSAttributedString.Key.font : UIFont.boldSystemFont(ofSize: 14)])
+        // ITALIC
+        let italicAttributedText: NSMutableAttributedString =
+            NSMutableAttributedString(string: textView.text, attributes: [NSAttributedString.Key.font : UIFont.boldSystemFont(ofSize: 14)])
+        // UNDERLINE
     }
     
     func applyStyles(styleIndex: Int) {
